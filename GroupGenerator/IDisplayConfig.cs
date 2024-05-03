@@ -13,5 +13,7 @@
         int DisplayModeFullNameWithId { get; set; }
 
         string Name { get; set; }
+
+        bool Validate(string value);
     }
 }
