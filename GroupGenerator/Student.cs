@@ -9,9 +9,9 @@
 
     internal class Student : Person, IDisplayConfig
     {
+        private const int DisplayModeFullNameWithId = 2;
         private string id;
         private string name;
-        private int displayModeFullNameWithId;
 
         public Student(string name, string id)
             : base(name)
@@ -45,13 +45,35 @@
             }
         }
 
-        public int DisplayModeFullNameWithId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        // public int DisplayModeFullNameWithId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        private bool Validate(string value)
+        public override string Name
         {
-            Regex regex = new Regex(@"^\d+$"); // Matches any string consisting entirely of one or more digits
+            get
+            {
+                switch (Person.DisplayMode) // Need to see if we can extend the class to be able to have a third choice.
+                {
+                    case Person.DisplayModeFirstLastName:
+                        return this.FirstName + " " + this.LastName;
+                    case Person.DisplayModeLastCommaFirstName:
+                        return this.LastName + ", " + this.FirstName;
+                    case Student.DisplayModeFullNameWithId:
+                        return this.Name; // Not the good return. need to look up.
+                    default:
+                        return "Invalid display mode!";
+                }
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public bool Validate(string value)
+        {
+            // Matches any string consisting entirely of one or more digits
+            Regex regex = new Regex(@"^\d+$");
             return regex.IsMatch(value);
         }
     }

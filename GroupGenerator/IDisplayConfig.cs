@@ -8,9 +8,9 @@
 
     internal interface IDisplayConfig
     {
-        int Id { get; set; }
+        string Id { get; set; }
 
-        int DisplayModeFullNameWithId { get; set; }
+        //int DisplayModeFullNameWithId { get; set; }
 
         string Name { get; set; }
 
