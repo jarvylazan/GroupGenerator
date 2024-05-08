@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.Design;
     using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
@@ -12,6 +13,7 @@
         private const int DisplayModeFullNameWithId = 2;
         private string id;
         private string name;
+        private int displayMode = DisplayModeFirstLastName;
 
         public Student(string name, string id)
             : base(name)
@@ -46,19 +48,18 @@
         }
 
         // public int DisplayModeFullNameWithId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
         public override string Name
         {
             get
             {
-                switch (Person.DisplayMode) // Need to see if we can extend the class to be able to have a third choice.
+                switch (Person.DisplayMode)
                 {
                     case Person.DisplayModeFirstLastName:
                         return this.FirstName + " " + this.LastName;
                     case Person.DisplayModeLastCommaFirstName:
-                        return this.LastName + ", " + this.FirstName;
-                    case Student.DisplayModeFullNameWithId:
-                        return this.Name; // Not the good return. need to look up.
+                        return this.FirstName + " " + this.LastName[0] + ".";
+                    case DisplayModeFullNameWithId:
+                        return this.LastName + "," + this.FirstName + "(" + this.Id + ")";
                     default:
                         return "Invalid display mode!";
                 }
@@ -66,7 +67,25 @@
 
             set
             {
-                throw new NotImplementedException();
+                throw new NotImplementedException(); // missing you part here JArvy
+            }
+        }
+
+        public int DisplayMode
+        {
+            get
+            {
+                return this.displayMode;
+            }
+
+            set
+            {
+                if (value < 0 || value > 2)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value));
+                }
+
+                this.displayMode = value;
             }
         }
 
