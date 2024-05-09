@@ -4,7 +4,7 @@ namespace GroupGenerator
 {
     public partial class MainForm : Form
     {
-        private List<Student> students = new List<Student>(); // Not sure if I keep it private ...
+        private List<Student> students = new List<Student>();
         private List<Student>[] formGroups;
 
         public MainForm()
@@ -20,17 +20,23 @@ namespace GroupGenerator
         private void CreateGroupsButton_Click(object sender, EventArgs e)
         {
             int nbrGroups;
-
-            if (this.membersInAGroupRadioButton.Checked)
+            try
             {
-                nbrGroups = this.studentListBox.Items.Count / this.UserInputSize();
-                GroupResultsForm groupResultsFrom = new GroupResultsForm(this.NbrOfGroup(nbrGroups, this.students));
+                if (this.membersInAGroupRadioButton.Checked)
+                {
+                    nbrGroups = this.studentListBox.Items.Count / this.UserInputSize();
+                    GroupResultsForm groupResultsFrom = new GroupResultsForm(this.NbrOfGroup(nbrGroups, this.students));
+                }
+
+                if (this.numberOfGroupsRadioButton.Checked)
+                {
+                    GroupResultsForm groupResultsForm = new GroupResultsForm(this.NbrOfGroup(this.UserInputSize(), this.students));
+                    groupResultsForm.ShowDialog();
+                }
             }
-
-            if (this.numberOfGroupsRadioButton.Checked)
+            catch (InvalidDataException ex)
             {
-                GroupResultsForm groupResultsForm = new GroupResultsForm(this.NbrOfGroup(this.UserInputSize(), this.students));
-                groupResultsForm.ShowDialog();
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -51,9 +57,10 @@ namespace GroupGenerator
         {
             this.formGroups = new List<Student>[nbrGroups];
 
+            // Initialize each group list
             for (int i = 0; i < nbrGroups; i++)
             {
-                this.formGroups[i] = new List<Student>(); // Initialize each group list
+                this.formGroups[i] = new List<Student>(); 
             }
 
             int index = 0;
