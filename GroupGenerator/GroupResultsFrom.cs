@@ -12,14 +12,16 @@ namespace GroupGenerator
 {
     public partial class GroupResultsFrom : Form
     {
-        public GroupResultsFrom()
+        private List<Student> groups;
+
+        public GroupResultsFrom(List<Student>[] groups)
         {
             InitializeComponent();
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
     }
 }

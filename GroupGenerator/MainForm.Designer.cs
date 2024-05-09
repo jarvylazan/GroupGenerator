@@ -34,12 +34,11 @@
             fullNameRadioButton = new RadioButton();
             hideLastNameRadioButton = new RadioButton();
             label1 = new Label();
-            addStudentsTextBox = new TextBox();
             importStudentsTextBoxButton = new Button();
             deleteStudentButton = new Button();
             clearStudentsButton = new Button();
             groupingGroupBox = new GroupBox();
-            numberOfMembersRadioButton = new RadioButton();
+            numberOfGroupsRadioButton = new RadioButton();
             membersInAGroupRadioButton = new RadioButton();
             groupSizeLabel = new Label();
             groupSizeTextBox = new TextBox();
@@ -51,11 +50,11 @@
             // studentListBox
             // 
             studentListBox.FormattingEnabled = true;
-            studentListBox.ItemHeight = 32;
-            studentListBox.Location = new Point(11, 13);
-            studentListBox.Margin = new Padding(4, 2, 4, 2);
+            studentListBox.ItemHeight = 15;
+            studentListBox.Location = new Point(6, 6);
+            studentListBox.Margin = new Padding(2, 1, 2, 1);
             studentListBox.Name = "studentListBox";
-            studentListBox.Size = new Size(426, 676);
+            studentListBox.Size = new Size(231, 469);
             studentListBox.TabIndex = 0;
             // 
             // nameFormatSelectionGroupBox
@@ -63,11 +62,11 @@
             nameFormatSelectionGroupBox.Controls.Add(nameWithStudentIdRadioButton);
             nameFormatSelectionGroupBox.Controls.Add(fullNameRadioButton);
             nameFormatSelectionGroupBox.Controls.Add(hideLastNameRadioButton);
-            nameFormatSelectionGroupBox.Location = new Point(472, 28);
-            nameFormatSelectionGroupBox.Margin = new Padding(4, 2, 4, 2);
+            nameFormatSelectionGroupBox.Location = new Point(259, 101);
+            nameFormatSelectionGroupBox.Margin = new Padding(2, 1, 2, 1);
             nameFormatSelectionGroupBox.Name = "nameFormatSelectionGroupBox";
-            nameFormatSelectionGroupBox.Padding = new Padding(4, 2, 4, 2);
-            nameFormatSelectionGroupBox.Size = new Size(399, 183);
+            nameFormatSelectionGroupBox.Padding = new Padding(2, 1, 2, 1);
+            nameFormatSelectionGroupBox.Size = new Size(215, 86);
             nameFormatSelectionGroupBox.TabIndex = 1;
             nameFormatSelectionGroupBox.TabStop = false;
             nameFormatSelectionGroupBox.Text = "Choose your name format";
@@ -75,10 +74,10 @@
             // nameWithStudentIdRadioButton
             // 
             nameWithStudentIdRadioButton.AutoSize = true;
-            nameWithStudentIdRadioButton.Location = new Point(20, 122);
-            nameWithStudentIdRadioButton.Margin = new Padding(4, 2, 4, 2);
+            nameWithStudentIdRadioButton.Location = new Point(11, 57);
+            nameWithStudentIdRadioButton.Margin = new Padding(2, 1, 2, 1);
             nameWithStudentIdRadioButton.Name = "nameWithStudentIdRadioButton";
-            nameWithStudentIdRadioButton.Size = new Size(326, 36);
+            nameWithStudentIdRadioButton.Size = new Size(163, 19);
             nameWithStudentIdRadioButton.TabIndex = 2;
             nameWithStudentIdRadioButton.Text = "Full Name with Student ID";
             nameWithStudentIdRadioButton.UseVisualStyleBackColor = true;
@@ -86,10 +85,10 @@
             // fullNameRadioButton
             // 
             fullNameRadioButton.AutoSize = true;
-            fullNameRadioButton.Location = new Point(20, 81);
-            fullNameRadioButton.Margin = new Padding(4, 2, 4, 2);
+            fullNameRadioButton.Location = new Point(11, 38);
+            fullNameRadioButton.Margin = new Padding(2, 1, 2, 1);
             fullNameRadioButton.Name = "fullNameRadioButton";
-            fullNameRadioButton.Size = new Size(154, 36);
+            fullNameRadioButton.Size = new Size(79, 19);
             fullNameRadioButton.TabIndex = 1;
             fullNameRadioButton.Text = "Full Name";
             fullNameRadioButton.UseVisualStyleBackColor = true;
@@ -98,10 +97,10 @@
             // 
             hideLastNameRadioButton.AutoSize = true;
             hideLastNameRadioButton.Checked = true;
-            hideLastNameRadioButton.Location = new Point(20, 38);
-            hideLastNameRadioButton.Margin = new Padding(4, 2, 4, 2);
+            hideLastNameRadioButton.Location = new Point(11, 18);
+            hideLastNameRadioButton.Margin = new Padding(2, 1, 2, 1);
             hideLastNameRadioButton.Name = "hideLastNameRadioButton";
-            hideLastNameRadioButton.Size = new Size(261, 36);
+            hideLastNameRadioButton.Size = new Size(132, 19);
             hideLastNameRadioButton.TabIndex = 0;
             hideLastNameRadioButton.TabStop = true;
             hideLastNameRadioButton.Text = "Last Name as Initials";
@@ -111,85 +110,76 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(472, 222);
-            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Location = new Point(259, 9);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(289, 45);
+            label1.Size = new Size(154, 21);
             label1.TabIndex = 2;
-            label1.Text = "Add students here:";
-            // 
-            // addStudentsTextBox
-            // 
-            addStudentsTextBox.Location = new Point(472, 269);
-            addStudentsTextBox.Margin = new Padding(4, 2, 4, 2);
-            addStudentsTextBox.Multiline = true;
-            addStudentsTextBox.Name = "addStudentsTextBox";
-            addStudentsTextBox.Size = new Size(400, 499);
-            addStudentsTextBox.TabIndex = 3;
+            label1.Text = "Upload your list first:";
             // 
             // importStudentsTextBoxButton
             // 
-            importStudentsTextBoxButton.Location = new Point(472, 774);
-            importStudentsTextBoxButton.Margin = new Padding(4, 2, 4, 2);
+            importStudentsTextBoxButton.Location = new Point(259, 51);
+            importStudentsTextBoxButton.Margin = new Padding(2, 1, 2, 1);
             importStudentsTextBoxButton.Name = "importStudentsTextBoxButton";
-            importStudentsTextBoxButton.Size = new Size(399, 62);
+            importStudentsTextBoxButton.Size = new Size(215, 29);
             importStudentsTextBoxButton.TabIndex = 4;
-            importStudentsTextBoxButton.Text = "Import";
+            importStudentsTextBoxButton.Text = "Import a list";
             importStudentsTextBoxButton.UseVisualStyleBackColor = true;
             importStudentsTextBoxButton.Click += ImportStudentsTextBoxButton_Click;
             // 
             // deleteStudentButton
             // 
-            deleteStudentButton.Location = new Point(11, 706);
-            deleteStudentButton.Margin = new Padding(4, 2, 4, 2);
+            deleteStudentButton.Location = new Point(259, 204);
+            deleteStudentButton.Margin = new Padding(2, 1, 2, 1);
             deleteStudentButton.Name = "deleteStudentButton";
-            deleteStudentButton.Size = new Size(195, 62);
+            deleteStudentButton.Size = new Size(105, 29);
             deleteStudentButton.TabIndex = 5;
             deleteStudentButton.Text = "Delete";
             deleteStudentButton.UseVisualStyleBackColor = true;
             // 
             // clearStudentsButton
             // 
-            clearStudentsButton.Location = new Point(243, 706);
-            clearStudentsButton.Margin = new Padding(4, 2, 4, 2);
+            clearStudentsButton.Location = new Point(371, 204);
+            clearStudentsButton.Margin = new Padding(2, 1, 2, 1);
             clearStudentsButton.Name = "clearStudentsButton";
-            clearStudentsButton.Size = new Size(195, 62);
+            clearStudentsButton.Size = new Size(105, 29);
             clearStudentsButton.TabIndex = 6;
             clearStudentsButton.Text = "Clear";
             clearStudentsButton.UseVisualStyleBackColor = true;
             // 
             // groupingGroupBox
             // 
-            groupingGroupBox.Controls.Add(numberOfMembersRadioButton);
+            groupingGroupBox.Controls.Add(numberOfGroupsRadioButton);
             groupingGroupBox.Controls.Add(membersInAGroupRadioButton);
-            groupingGroupBox.Location = new Point(11, 774);
-            groupingGroupBox.Margin = new Padding(4, 2, 4, 2);
+            groupingGroupBox.Location = new Point(264, 269);
+            groupingGroupBox.Margin = new Padding(2, 1, 2, 1);
             groupingGroupBox.Name = "groupingGroupBox";
-            groupingGroupBox.Padding = new Padding(4, 2, 4, 2);
-            groupingGroupBox.Size = new Size(425, 181);
+            groupingGroupBox.Padding = new Padding(2, 1, 2, 1);
+            groupingGroupBox.Size = new Size(212, 85);
             groupingGroupBox.TabIndex = 7;
             groupingGroupBox.TabStop = false;
             groupingGroupBox.Text = "Choose how to group the students";
             // 
-            // numberOfMembersRadioButton
+            // numberOfGroupsRadioButton
             // 
-            numberOfMembersRadioButton.AutoSize = true;
-            numberOfMembersRadioButton.Location = new Point(15, 96);
-            numberOfMembersRadioButton.Margin = new Padding(4, 2, 4, 2);
-            numberOfMembersRadioButton.Name = "numberOfMembersRadioButton";
-            numberOfMembersRadioButton.Size = new Size(337, 36);
-            numberOfMembersRadioButton.TabIndex = 1;
-            numberOfMembersRadioButton.Text = "Number of groups to make";
-            numberOfMembersRadioButton.UseVisualStyleBackColor = true;
+            numberOfGroupsRadioButton.AutoSize = true;
+            numberOfGroupsRadioButton.Location = new Point(8, 45);
+            numberOfGroupsRadioButton.Margin = new Padding(2, 1, 2, 1);
+            numberOfGroupsRadioButton.Name = "numberOfGroupsRadioButton";
+            numberOfGroupsRadioButton.Size = new Size(169, 19);
+            numberOfGroupsRadioButton.TabIndex = 1;
+            numberOfGroupsRadioButton.Text = "Number of groups to make";
+            numberOfGroupsRadioButton.UseVisualStyleBackColor = true;
             // 
             // membersInAGroupRadioButton
             // 
             membersInAGroupRadioButton.AutoSize = true;
             membersInAGroupRadioButton.Checked = true;
-            membersInAGroupRadioButton.Location = new Point(15, 53);
-            membersInAGroupRadioButton.Margin = new Padding(4, 2, 4, 2);
+            membersInAGroupRadioButton.Location = new Point(8, 25);
+            membersInAGroupRadioButton.Margin = new Padding(2, 1, 2, 1);
             membersInAGroupRadioButton.Name = "membersInAGroupRadioButton";
-            membersInAGroupRadioButton.Size = new Size(386, 36);
+            membersInAGroupRadioButton.Size = new Size(193, 19);
             membersInAGroupRadioButton.TabIndex = 0;
             membersInAGroupRadioButton.TabStop = true;
             membersInAGroupRadioButton.Text = "Number of members in a group";
@@ -198,48 +188,48 @@
             // groupSizeLabel
             // 
             groupSizeLabel.AutoSize = true;
-            groupSizeLabel.Location = new Point(28, 990);
-            groupSizeLabel.Margin = new Padding(4, 0, 4, 0);
+            groupSizeLabel.Location = new Point(319, 371);
+            groupSizeLabel.Margin = new Padding(2, 0, 2, 0);
             groupSizeLabel.Name = "groupSizeLabel";
-            groupSizeLabel.Size = new Size(62, 32);
+            groupSizeLabel.Size = new Size(30, 15);
             groupSizeLabel.TabIndex = 8;
             groupSizeLabel.Text = "Size:";
             // 
             // groupSizeTextBox
             // 
-            groupSizeTextBox.Location = new Point(121, 981);
-            groupSizeTextBox.Margin = new Padding(4, 2, 4, 2);
+            groupSizeTextBox.Location = new Point(362, 371);
+            groupSizeTextBox.Margin = new Padding(2, 1, 2, 1);
             groupSizeTextBox.Name = "groupSizeTextBox";
-            groupSizeTextBox.Size = new Size(88, 39);
+            groupSizeTextBox.Size = new Size(49, 23);
             groupSizeTextBox.TabIndex = 9;
             // 
             // createGroupsButton
             // 
-            createGroupsButton.Location = new Point(472, 930);
-            createGroupsButton.Margin = new Padding(4, 2, 4, 2);
+            createGroupsButton.Location = new Point(259, 409);
+            createGroupsButton.Margin = new Padding(2, 1, 2, 1);
             createGroupsButton.Name = "createGroupsButton";
-            createGroupsButton.Size = new Size(399, 90);
+            createGroupsButton.Size = new Size(215, 42);
             createGroupsButton.TabIndex = 10;
             createGroupsButton.Text = "Create Group";
             createGroupsButton.UseVisualStyleBackColor = true;
+            createGroupsButton.Click += CreateGroupsButton_Click;
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(927, 1086);
+            ClientSize = new Size(499, 487);
             Controls.Add(createGroupsButton);
             Controls.Add(groupSizeTextBox);
+            Controls.Add(nameFormatSelectionGroupBox);
             Controls.Add(groupSizeLabel);
             Controls.Add(groupingGroupBox);
             Controls.Add(clearStudentsButton);
             Controls.Add(deleteStudentButton);
             Controls.Add(importStudentsTextBoxButton);
-            Controls.Add(addStudentsTextBox);
             Controls.Add(label1);
-            Controls.Add(nameFormatSelectionGroupBox);
             Controls.Add(studentListBox);
-            Margin = new Padding(4, 2, 4, 2);
+            Margin = new Padding(2, 1, 2, 1);
             Name = "MainForm";
             Text = "Group Generator";
             nameFormatSelectionGroupBox.ResumeLayout(false);
@@ -258,12 +248,11 @@
         private RadioButton fullNameRadioButton;
         private RadioButton hideLastNameRadioButton;
         private Label label1;
-        private TextBox addStudentsTextBox;
         private Button importStudentsTextBoxButton;
         private Button deleteStudentButton;
         private Button clearStudentsButton;
         private GroupBox groupingGroupBox;
-        private RadioButton numberOfMembersRadioButton;
+        private RadioButton numberOfGroupsRadioButton;
         private RadioButton membersInAGroupRadioButton;
         private Label groupSizeLabel;
         private TextBox groupSizeTextBox;
