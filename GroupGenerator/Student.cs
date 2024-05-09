@@ -14,8 +14,9 @@
         private string id;
         private string name;
         private int displayMode = DisplayModeFirstLastName;
+        char[] delim = { ',', '(' };
 
-        public Student(string name, string id)
+        public Student(string name)
             : base(name)
         {
             this.Id = id;
@@ -67,7 +68,24 @@
 
             set
             {
-                throw new NotImplementedException(); // missing you part here JArvy
+                if (value.Contains(','))
+                {
+                    string[] nameParts = value.Trim().Split(',');
+                    this.FirstName = nameParts[1].Trim();
+                    string firstNameAndID = nameParts[1].Trim();
+                    string[] tokensComma = firstNameAndID.Split(this.delim[1]);
+                    this.LastName = nameParts[0].Trim();
+                    this.id = nameParts[1].Trim(); // should be index 2
+                }
+                else
+                {
+                    string[] splitComma = value.Split(this.delim[0]);
+                    string[] splitParenthesis = splitComma[1].Split(this.delim[1]);
+
+                    this.LastName = splitComma[0];
+                    this.FirstName = splitParenthesis[0];
+                    this.id = splitParenthesis[1].TrimEnd(')');
+                }
             }
         }
 
