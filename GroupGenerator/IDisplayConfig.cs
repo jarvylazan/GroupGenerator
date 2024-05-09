@@ -10,9 +10,9 @@
     {
         string Id { get; set; }
 
-        //int DisplayModeFullNameWithId { get; set; }
-
         string Name { get; set; }
+
+        int DisplayMode { get; set; }
 
         bool Validate(string value);
     }

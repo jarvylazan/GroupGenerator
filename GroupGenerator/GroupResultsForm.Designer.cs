@@ -32,10 +32,10 @@
             GroupsListView = new ListView();
             SuspendLayout();
             // 
-            // closeButton
+            // CloseButton
             // 
             CloseButton.Location = new Point(110, 388);
-            CloseButton.Name = "closeButton";
+            CloseButton.Name = "CloseButton";
             CloseButton.Size = new Size(137, 34);
             CloseButton.TabIndex = 0;
             CloseButton.Text = "&Close";
@@ -50,7 +50,7 @@
             GroupsListView.TabIndex = 1;
             GroupsListView.UseCompatibleStateImageBehavior = false;
             // 
-            // GroupResultsFrom
+            // GroupResultsForm
             // 
             AcceptButton = CloseButton;
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -59,8 +59,9 @@
             ClientSize = new Size(363, 450);
             Controls.Add(GroupsListView);
             Controls.Add(CloseButton);
-            Name = "GroupResultsFrom";
+            Name = "GroupResultsForm";
             Text = "GroupResultsFrom";
+            Load += GroupResultsForm_Load;
             ResumeLayout(false);
         }
 

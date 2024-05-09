@@ -8,7 +8,7 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
-    internal class Student : Person, IDisplayConfig
+    public class Student : Person, IDisplayConfig
     {
         private const int DisplayModeFullNameWithId = 2;
         private string id;

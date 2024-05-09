@@ -24,5 +24,17 @@ namespace GroupGenerator
         {
             this.Close();
         }
+
+        private void GroupResultsForm_Load(object sender, EventArgs e)
+        {
+            for (int i = 0; i < this.groups.Length; i++)
+            {
+                this.GroupsListView.Items.Add("Group " + (i + 1) + ":");
+                foreach (Student student in this.groups[i])
+                {
+                    this.GroupsListView.Items.Add(student.Name);
+                }
+            }
+        }
     }
 }
