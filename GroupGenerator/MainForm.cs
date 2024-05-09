@@ -59,14 +59,13 @@ namespace GroupGenerator
             if (this.membersInAGroupRadioButton.Checked)
             {
                 nbrGroups = this.studentListBox.Items.Count / this.UserInputSize();
-                GroupResultsFrom groupResultsFrom = new GroupResultsFrom(this.NbrOfGroup(nbrGroups, this.students));
-                groupResultsFrom.ShowDialog();
+                GroupResultsForm groupResultsFrom = new GroupResultsForm(this.NbrOfGroup(nbrGroups, this.students));
             }
 
             if (this.numberOfGroupsRadioButton.Checked)
             {
-                GroupResultsFrom groupResultsFrom = new GroupResultsFrom(this.NbrOfGroup(this.UserInputSize(), this.students));
-                groupResultsFrom.ShowDialog();
+                GroupResultsForm groupResultsForm = new GroupResultsForm(this.NbrOfGroup(this.UserInputSize(), this.students));
+                groupResultsForm.ShowDialog();
             }
         }
 

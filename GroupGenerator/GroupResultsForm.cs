@@ -10,13 +10,14 @@ using System.Windows.Forms;
 
 namespace GroupGenerator
 {
-    public partial class GroupResultsFrom : Form
+    public partial class GroupResultsForm : Form
     {
-        private List<Student> groups;
+        private List<Student>[] groups;
 
-        public GroupResultsFrom(List<Student>[] groups)
+        public GroupResultsForm(List<Student>[] group)
         {
-            InitializeComponent();
+            this.InitializeComponent();
+            this.groups = group;
         }
 
         private void CloseButton_Click(object sender, EventArgs e)

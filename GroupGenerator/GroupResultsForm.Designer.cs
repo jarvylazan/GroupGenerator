@@ -1,6 +1,6 @@
 ﻿namespace GroupGenerator
 {
-    partial class GroupResultsFrom
+    partial class GroupResultsForm
     {
         /// <summary>
         /// Required designer variable.
