@@ -79,12 +79,19 @@
                 }
                 else
                 {
-                    string[] splitComma = value.Split(this.delim[0]);
-                    string[] splitParenthesis = splitComma[1].Split(this.delim[1]);
+                    try
+                    {
+                        string[] splitComma = value.Split(this.delim[0]);
+                        string[] splitParenthesis = splitComma[1].Split(this.delim[1]);
 
-                    this.LastName = splitComma[0];
-                    this.FirstName = splitParenthesis[0];
-                    this.id = splitParenthesis[1].TrimEnd(')');
+                        this.LastName = splitComma[0];
+                        this.FirstName = splitParenthesis[0];
+                        this.id = splitParenthesis[1].TrimEnd(')');
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
             }
         }
