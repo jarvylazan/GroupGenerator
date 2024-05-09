@@ -135,7 +135,7 @@
             deleteStudentButton.Name = "deleteStudentButton";
             deleteStudentButton.Size = new Size(105, 29);
             deleteStudentButton.TabIndex = 5;
-            deleteStudentButton.Text = "Delete";
+            deleteStudentButton.Text = "Delete a Student";
             deleteStudentButton.UseVisualStyleBackColor = true;
             // 
             // clearStudentsButton
@@ -145,7 +145,7 @@
             clearStudentsButton.Name = "clearStudentsButton";
             clearStudentsButton.Size = new Size(105, 29);
             clearStudentsButton.TabIndex = 6;
-            clearStudentsButton.Text = "Clear";
+            clearStudentsButton.Text = "Clear All";
             clearStudentsButton.UseVisualStyleBackColor = true;
             // 
             // groupingGroupBox

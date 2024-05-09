@@ -20,11 +20,6 @@ namespace GroupGenerator
             this.groups = group;
         }
 
-        private void CloseButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void GroupResultsForm_Load(object sender, EventArgs e)
         {
             for (int i = 0; i < this.groups.Length; i++)
@@ -35,6 +30,11 @@ namespace GroupGenerator
                     this.GroupsListView.Items.Add(student.Name);
                 }
             }
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
