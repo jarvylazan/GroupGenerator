@@ -19,7 +19,6 @@
         public Student(string name)
             : base(name)
         {
-            this.Id = id;
         }
 
         public Student(string firstName, string lastName, string id)
