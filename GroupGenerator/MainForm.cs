@@ -1,22 +1,30 @@
 using System;
+using System.Diagnostics;
 using System.Reflection.Metadata;
 
 namespace GroupGenerator
 {
     public partial class MainForm : Form
     {
-        private static List<Student> students = new List<Student>();
         private List<Student>[] formGroups;
+        private List<Student> students = new List<Student>();
 
         public MainForm()
         {
             this.InitializeComponent();
         }
 
+        public List<Student> Students
+        {
+            get { return this.students; }
+            set { this.students = value; }
+        }
+
         private void ImportStudentsTextBoxButton_Click(object sender, EventArgs e)
         {
-            ImportForm importForm = new ImportForm();
+            ImportForm importForm = new ImportForm(this);
             importForm.ShowDialog();
+            //TODO Display current list to import textbox.
         }
 
         private void CreateGroupsButton_Click(object sender, EventArgs e)
