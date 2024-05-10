@@ -81,16 +81,35 @@
                 {
                     try
                     {
-                        string[] splitComma = value.Split(this.delim[0]);
-                        string[] splitParenthesis = splitComma[1].Split(this.delim[1]);
+                        // Catch error when there is no comma or open parenthesis.
+                        string[] splitComma = value.Split(delim[0]);
+                        string[] splitParenthesis = splitComma[1].Split(delim[1]);
 
-                        this.LastName = splitComma[0];
-                        this.FirstName = splitParenthesis[0];
-                        this.id = splitParenthesis[1].TrimEnd(')');
+                        LastName = splitComma[0];
+                        FirstName = splitParenthesis[0].Trim();
+                        id = splitParenthesis[1].TrimEnd(')');
+
+                        Console.WriteLine(LastName);
+                        Console.WriteLine(FirstName);
+                        Console.WriteLine(id);
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message);
+                        if (!value.Contains(',') || !value.Contains('('))
+                        {
+                            if (!value.Contains(','))
+                            {
+                                Console.WriteLine("There is no comma in your text format.");
+                            }
+                            if (!value.Contains('('))
+                            {
+                                Console.WriteLine("The ID number format is invalid. This error is most likely caused if there is no open parenthesis before the ID.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
                     }
                 }
             }
