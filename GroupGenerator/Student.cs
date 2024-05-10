@@ -10,11 +10,10 @@
 
     public class Student : Person, IDisplayConfig
     {
-        private const int DisplayModeFullNameWithId = 2;
+        public const int DisplayModeFullNameWithId = 2;
         private string id;
-        private string name;
-        private int displayMode = DisplayModeFirstLastName;
-        char[] delim = { ',', '(' };
+        private int displayMode;
+        private char[] delim = { ',', '(' };
 
         public Student(string name)
             : base(name)
@@ -42,24 +41,23 @@
                 }
                 else
                 {
-                    throw new Exception("You cannot have other things than numbers in your ID");
+                    throw new Exception("You cannot have an empty ID nor characters other than numbers.");
                 }
             }
         }
 
-        // public int DisplayModeFullNameWithId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public override string Name
         {
             get
             {
-                switch (Person.DisplayMode)
+                switch (this.DisplayMode)
                 {
                     case Person.DisplayModeFirstLastName:
                         return this.FirstName + " " + this.LastName;
                     case Person.DisplayModeLastCommaFirstName:
                         return this.FirstName + " " + this.LastName[0] + ".";
                     case DisplayModeFullNameWithId:
-                        return this.LastName + "," + this.FirstName + "(" + this.Id + ")";
+                        return this.LastName + ", " + this.FirstName + " (" + this.Id + ")";
                     default:
                         return "Invalid display mode!";
                 }
@@ -67,55 +65,39 @@
 
             set
             {
-                if (value.Contains(','))
+                try
                 {
-                    string[] nameParts = value.Trim().Split(',');
-                    this.FirstName = nameParts[1].Trim();
-                    string firstNameAndID = nameParts[1].Trim();
-                    string[] tokensComma = firstNameAndID.Split(this.delim[1]);
-                    this.LastName = nameParts[0].Trim();
-                    this.id = nameParts[1].Trim(); // should be index 2
+                    // Catch error when there is no comma or open parenthesis.
+                    string[] splitComma = value.Split(this.delim[0]);
+                    string[] splitParenthesis = splitComma[1].Split(this.delim[1]);
+
+                    this.LastName = splitComma[0];
+                    this.FirstName = splitParenthesis[0].Trim();
+                    this.Id = splitParenthesis[1].TrimEnd(')');
                 }
-                else
+                catch (Exception ex)
                 {
-                    try
+                    if (!value.Contains(',') || !value.Contains('('))
                     {
-                        // Catch error when there is no comma or open parenthesis.
-                        string[] splitComma = value.Split(delim[0]);
-                        string[] splitParenthesis = splitComma[1].Split(delim[1]);
+                        if (!value.Contains(','))
+                        {
+                            MessageBox.Show("There is no comma in your text format.");
+                        }
 
-                        LastName = splitComma[0];
-                        FirstName = splitParenthesis[0].Trim();
-                        id = splitParenthesis[1].TrimEnd(')');
-
-                        Console.WriteLine(LastName);
-                        Console.WriteLine(FirstName);
-                        Console.WriteLine(id);
+                        if (!value.Contains('('))
+                        {
+                            MessageBox.Show("The ID number format is invalid. This error is most likely caused if there is no open parenthesis before the ID.");
+                        }
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        if (!value.Contains(',') || !value.Contains('('))
-                        {
-                            if (!value.Contains(','))
-                            {
-                                Console.WriteLine("There is no comma in your text format.");
-                            }
-
-                            if (!value.Contains('('))
-                            {
-                                Console.WriteLine("The ID number format is invalid. This error is most likely caused if there is no open parenthesis before the ID.");
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine(ex.Message);
-                        }
+                        MessageBox.Show(ex.Message);
                     }
                 }
             }
         }
 
-        public int DisplayMode
+        public new int DisplayMode
         {
             get
             {

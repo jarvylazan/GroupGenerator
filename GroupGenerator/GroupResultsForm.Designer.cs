@@ -49,6 +49,7 @@
             GroupsListView.Size = new Size(259, 338);
             GroupsListView.TabIndex = 1;
             GroupsListView.UseCompatibleStateImageBehavior = false;
+            GroupsListView.View = View.List;
             // 
             // GroupResultsForm
             // 

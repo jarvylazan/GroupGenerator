@@ -12,9 +12,9 @@ namespace GroupGenerator
 {
     public partial class GroupResultsForm : Form
     {
-        private List<Student>[] groups;
+        private List<string>[] groups;
 
-        public GroupResultsForm(List<Student>[] group)
+        public GroupResultsForm(List<string>[] group)
         {
             this.InitializeComponent();
             this.groups = group;
@@ -25,9 +25,9 @@ namespace GroupGenerator
             for (int i = 0; i < this.groups.Length; i++)
             {
                 this.GroupsListView.Items.Add("Group " + (i + 1) + ":");
-                foreach (Student student in this.groups[i])
+                foreach (string student in this.groups[i])
                 {
-                    this.GroupsListView.Items.Add(student.Name);
+                    this.GroupsListView.Items.Add(student);
                 }
             }
         }

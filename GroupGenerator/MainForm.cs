@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Reflection.Metadata;
 
@@ -6,23 +7,33 @@ namespace GroupGenerator
 {
     public partial class MainForm : Form
     {
-        private List<Student>[] formGroups;
-        private List<Student> students = new List<Student>();
+        private List<string>[] formGroups; // Should we initate it ?
+        private BindingList<Student> students = new BindingList<Student>(); // BIDDING LIST ??? it s a requirement.
+        private int displayMode;
 
         public MainForm()
         {
             this.InitializeComponent();
         }
 
-        public List<Student> Students
+        public BindingList<Student> Students
         {
             get { return this.students; }
             set { this.students = value; }
         }
 
+        public void AddFormatDisplay(BindingList<Student> students, int displaymode)
+        {
+            foreach (Student student in students)
+            {
+                student.DisplayMode = displaymode;
+                this.studentListBox.Items.Add(student.Name);
+            }
+        }
+
         private void ImportStudentsTextBoxButton_Click(object sender, EventArgs e)
         {
-            ImportForm importForm = new ImportForm(this);
+            ImportForm importForm = new ImportForm(this, this.displayMode);
             importForm.ShowDialog();
             //TODO Display current list to import textbox.
         }
@@ -35,12 +46,20 @@ namespace GroupGenerator
                 if (this.membersInAGroupRadioButton.Checked)
                 {
                     nbrGroups = this.studentListBox.Items.Count / this.UserInputSize();
-                    GroupResultsForm groupResultsFrom = new GroupResultsForm(this.NbrOfGroup(nbrGroups, students));
+                    if (nbrGroups >= 1)
+                    {
+                        GroupResultsForm groupResultsFrom = new GroupResultsForm(this.NbrOfGroup(nbrGroups, this.students));
+                        groupResultsFrom.ShowDialog();
+                    }
+                    else
+                    {
+                        throw new InvalidDataException($"There fewer students than the numbers of students in a group. You have {this.studentListBox.Items.Count} students.");
+                    }
                 }
 
                 if (this.numberOfGroupsRadioButton.Checked)
                 {
-                    GroupResultsForm groupResultsForm = new GroupResultsForm(this.NbrOfGroup(this.UserInputSize(), students));
+                    GroupResultsForm groupResultsForm = new GroupResultsForm(this.NbrOfGroup(this.UserInputSize(), this.students));
                     groupResultsForm.ShowDialog();
                 }
             }
@@ -67,19 +86,19 @@ namespace GroupGenerator
             }
         }
 
-        private List<Student>[] NbrOfGroup(int nbrGroups, List<Student> stud)
+        private List<string>[] NbrOfGroup(int nbrGroups, BindingList<Student> stud)
         {
-            this.formGroups = new List<Student>[nbrGroups];
+            this.formGroups = new List<string>[nbrGroups];
 
             // Initialize each group list
             for (int i = 0; i < nbrGroups; i++)
             {
-                this.formGroups[i] = new List<Student>();
+                this.formGroups[i] = new List<string>();
             }
 
             int index = 0;
 
-            foreach (Student student in stud)
+            foreach (string student in this.studentListBox.Items)
             {
                 if (index < nbrGroups)
                 {
@@ -99,7 +118,7 @@ namespace GroupGenerator
         {
             this.studentListBox.Items.Clear();
             this.importStudentsTextBoxButton.Focus();
-            students.Clear();
+            this.students.Clear();
         }
 
         private void DeleteStudentButton_Click(object sender, EventArgs e)
@@ -108,7 +127,7 @@ namespace GroupGenerator
             {
                 if (this.studentListBox.SelectedIndex != -1)
                 {
-                    students.RemoveAt(this.studentListBox.SelectedIndex);
+                    this.students.RemoveAt(this.studentListBox.SelectedIndex);
                     this.studentListBox.Items.RemoveAt(this.studentListBox.SelectedIndex);
                 }
                 else
@@ -120,6 +139,27 @@ namespace GroupGenerator
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void HideLastNameRadioButton_Clicked(object sender, EventArgs e)
+        {
+            this.studentListBox.Items.Clear();
+            this.displayMode = Student.DisplayModeLastCommaFirstName;
+            this.AddFormatDisplay(this.students, this.displayMode);
+        }
+
+        private void FullNameRadioButton_Clicked(object sender, EventArgs e)
+        {
+            this.studentListBox.Items.Clear();
+            this.displayMode = Student.DisplayModeFirstLastName;
+            this.AddFormatDisplay(this.students, this.displayMode);
+        }
+
+        private void NameWithStudentIdRadioButton_Clicked(object sender, EventArgs e)
+        {
+            this.studentListBox.Items.Clear();
+            this.displayMode = Student.DisplayModeFullNameWithId;
+            this.AddFormatDisplay(this.students, this.displayMode);
         }
     }
 }

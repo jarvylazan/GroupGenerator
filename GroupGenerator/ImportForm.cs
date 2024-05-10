@@ -12,13 +12,15 @@ namespace GroupGenerator
 {
     public partial class ImportForm : Form
     {
-        private List<Student> students = new List<Student>();
+        private BindingList<Student> students = new BindingList<Student>();
         private MainForm mainForm;
+        private int displayMode;
 
-        public ImportForm(MainForm mainForm)
+        public ImportForm(MainForm mainForm, int displayMode)
         {
             this.InitializeComponent();
             this.mainForm = mainForm;
+            this.displayMode = displayMode;
         }
 
         private void ImportAndCloseButton_CLick(object sender, EventArgs e)
@@ -29,9 +31,9 @@ namespace GroupGenerator
             {
                 Student tmpStudent = new Student(name);
                 this.students.Add(tmpStudent);
-                this.mainForm.studentListBox.Items.Add(name);
             }
 
+            this.mainForm.AddFormatDisplay(this.students, this.displayMode);
             this.mainForm.Students = this.students;
             this.Close();
         }
