@@ -1,4 +1,5 @@
 using System;
+using System.Reflection.Metadata;
 
 namespace GroupGenerator
 {
@@ -36,6 +37,10 @@ namespace GroupGenerator
                 }
             }
             catch (InvalidDataException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (InvalidOperationException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -89,9 +94,24 @@ namespace GroupGenerator
             students.Clear();
         }
 
-        private void deleteStudentButton_Click(object sender, EventArgs e)
+        private void DeleteStudentButton_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (this.studentListBox.SelectedIndex != -1)
+                {
+                    students.RemoveAt(this.studentListBox.SelectedIndex);
+                    this.studentListBox.Items.RemoveAt(this.studentListBox.SelectedIndex);
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException("You did not select any student in the list to be deleted.");
+                }
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

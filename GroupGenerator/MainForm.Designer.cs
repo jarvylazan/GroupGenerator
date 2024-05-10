@@ -137,7 +137,7 @@
             deleteStudentButton.TabIndex = 5;
             deleteStudentButton.Text = "Delete a Student";
             deleteStudentButton.UseVisualStyleBackColor = true;
-            deleteStudentButton.Click += deleteStudentButton_Click;
+            deleteStudentButton.Click += DeleteStudentButton_Click;
             // 
             // clearStudentsButton
             // 
