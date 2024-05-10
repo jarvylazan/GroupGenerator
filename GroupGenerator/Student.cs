@@ -19,7 +19,6 @@
         public Student(string name)
             : base(name)
         {
-            this.Id = id;
         }
 
         public Student(string firstName, string lastName, string id)
@@ -88,7 +87,7 @@
                         this.FirstName = splitParenthesis[0];
                         this.id = splitParenthesis[1].TrimEnd(')');
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
                     }

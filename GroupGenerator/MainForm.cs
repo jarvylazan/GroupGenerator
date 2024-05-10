@@ -4,7 +4,7 @@ namespace GroupGenerator
 {
     public partial class MainForm : Form
     {
-        private List<Student> students = new List<Student>();
+        private static List<Student> students = new List<Student>();
         private List<Student>[] formGroups;
 
         public MainForm()
@@ -14,7 +14,8 @@ namespace GroupGenerator
 
         private void ImportStudentsTextBoxButton_Click(object sender, EventArgs e)
         {
-
+            ImportForm importForm = new ImportForm();
+            importForm.ShowDialog();
         }
 
         private void CreateGroupsButton_Click(object sender, EventArgs e)
@@ -25,12 +26,12 @@ namespace GroupGenerator
                 if (this.membersInAGroupRadioButton.Checked)
                 {
                     nbrGroups = this.studentListBox.Items.Count / this.UserInputSize();
-                    GroupResultsForm groupResultsFrom = new GroupResultsForm(this.NbrOfGroup(nbrGroups, this.students));
+                    GroupResultsForm groupResultsFrom = new GroupResultsForm(this.NbrOfGroup(nbrGroups, students));
                 }
 
                 if (this.numberOfGroupsRadioButton.Checked)
                 {
-                    GroupResultsForm groupResultsForm = new GroupResultsForm(this.NbrOfGroup(this.UserInputSize(), this.students));
+                    GroupResultsForm groupResultsForm = new GroupResultsForm(this.NbrOfGroup(this.UserInputSize(), students));
                     groupResultsForm.ShowDialog();
                 }
             }
@@ -60,7 +61,7 @@ namespace GroupGenerator
             // Initialize each group list
             for (int i = 0; i < nbrGroups; i++)
             {
-                this.formGroups[i] = new List<Student>(); 
+                this.formGroups[i] = new List<Student>();
             }
 
             int index = 0;
@@ -79,6 +80,18 @@ namespace GroupGenerator
             }
 
             return this.formGroups;
+        }
+
+        private void ClearStudentsButton_Click(object sender, EventArgs e)
+        {
+            this.studentListBox.Items.Clear();
+            this.importStudentsTextBoxButton.Focus();
+            students.Clear();
+        }
+
+        private void deleteStudentButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
