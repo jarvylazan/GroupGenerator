@@ -100,6 +100,7 @@
                             {
                                 Console.WriteLine("There is no comma in your text format.");
                             }
+
                             if (!value.Contains('('))
                             {
                                 Console.WriteLine("The ID number format is invalid. This error is most likely caused if there is no open parenthesis before the ID.");

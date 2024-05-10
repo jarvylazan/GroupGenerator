@@ -36,40 +36,45 @@
             // importTextBox
             // 
             importTextBox.AllowDrop = true;
-            importTextBox.Location = new Point(51, 41);
+            importTextBox.Location = new Point(95, 87);
+            importTextBox.Margin = new Padding(6);
             importTextBox.Multiline = true;
             importTextBox.Name = "importTextBox";
-            importTextBox.Size = new Size(240, 365);
+            importTextBox.Size = new Size(442, 774);
             importTextBox.TabIndex = 0;
             // 
             // importNCloseButton
             // 
             importNCloseButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            importNCloseButton.Location = new Point(85, 412);
+            importNCloseButton.Location = new Point(158, 879);
+            importNCloseButton.Margin = new Padding(6);
             importNCloseButton.Name = "importNCloseButton";
-            importNCloseButton.Size = new Size(157, 25);
+            importNCloseButton.Size = new Size(292, 53);
             importNCloseButton.TabIndex = 1;
             importNCloseButton.Text = "Import and Close";
             importNCloseButton.UseVisualStyleBackColor = true;
+            importNCloseButton.Click += ImportAndCloseButton_CLick;
             // 
             // DescriptionLabel
             // 
             DescriptionLabel.AutoSize = true;
             DescriptionLabel.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            DescriptionLabel.Location = new Point(31, 9);
+            DescriptionLabel.Location = new Point(58, 19);
+            DescriptionLabel.Margin = new Padding(6, 0, 6, 0);
             DescriptionLabel.Name = "DescriptionLabel";
-            DescriptionLabel.Size = new Size(280, 17);
+            DescriptionLabel.Size = new Size(542, 36);
             DescriptionLabel.TabIndex = 2;
             DescriptionLabel.Text = "Copy and Paste Or Click and Drop your list :";
             // 
             // ImportForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(338, 467);
+            ClientSize = new Size(628, 996);
             Controls.Add(DescriptionLabel);
             Controls.Add(importNCloseButton);
             Controls.Add(importTextBox);
+            Margin = new Padding(6);
             Name = "ImportForm";
             Text = "ImportForm";
             ResumeLayout(false);

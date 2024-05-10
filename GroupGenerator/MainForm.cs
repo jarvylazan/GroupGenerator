@@ -1,21 +1,29 @@
 using System;
+using System.Diagnostics;
 
 namespace GroupGenerator
 {
     public partial class MainForm : Form
     {
-        private static List<Student> students = new List<Student>();
         private List<Student>[] formGroups;
+        private List<Student> students = new List<Student>();
 
         public MainForm()
         {
             this.InitializeComponent();
         }
 
+        public List<Student> Students
+        {
+            get { return this.students; }
+            set { this.students = value; }
+        }
+
         private void ImportStudentsTextBoxButton_Click(object sender, EventArgs e)
         {
-            ImportForm importForm = new ImportForm();
+            ImportForm importForm = new ImportForm(this);
             importForm.ShowDialog();
+            //TODO Display current list to import textbox.
         }
 
         private void CreateGroupsButton_Click(object sender, EventArgs e)
@@ -90,6 +98,20 @@ namespace GroupGenerator
         }
 
         private void deleteStudentButton_Click(object sender, EventArgs e)
+        {
+            foreach (Student student in students)
+            {
+                Console.WriteLine(student.Name.ToString());
+                Debug.WriteLine(student.Name.ToString());
+            }
+        }
+
+        private void hideLastNameRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckRadioButton();
+        }
+
+        private void CheckRadioButton()
         {
 
         }
