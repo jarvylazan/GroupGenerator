@@ -24,6 +24,11 @@ namespace GroupGenerator
         {
             for (int i = 0; i < this.groups.Length; i++)
             {
+                if (i > 0)
+                {
+                    this.GroupsListView.Items.Add("\n");
+                }
+
                 this.GroupsListView.Items.Add("Group " + (i + 1) + ":");
                 foreach (string student in this.groups[i])
                 {

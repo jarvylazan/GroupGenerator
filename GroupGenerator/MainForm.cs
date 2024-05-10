@@ -1,14 +1,14 @@
-using System;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Reflection.Metadata;
-
 namespace GroupGenerator
 {
+    using System;
+    using System.ComponentModel;
+    using System.Diagnostics;
+    using System.Reflection.Metadata;
+
     public partial class MainForm : Form
     {
         private List<string>[] formGroups; // Should we initate it ?
-        private BindingList<Student> students = new BindingList<Student>(); // BIDDING LIST ??? it s a requirement.
+        private BindingList<Student> students = new BindingList<Student>();
         private int displayMode;
 
         public MainForm()
@@ -35,7 +35,6 @@ namespace GroupGenerator
         {
             ImportForm importForm = new ImportForm(this, this.displayMode);
             importForm.ShowDialog();
-            //TODO Display current list to import textbox.
         }
 
         private void CreateGroupsButton_Click(object sender, EventArgs e)
@@ -100,15 +99,8 @@ namespace GroupGenerator
 
             foreach (string student in this.studentListBox.Items)
             {
-                if (index < nbrGroups)
-                {
-                    this.formGroups[index].Add(student);
-                    index++;
-                }
-                else
-                {
-                    index = 0;
-                }
+                this.formGroups[index].Add(student);
+                index = (index + 1) % nbrGroups;
             }
 
             return this.formGroups;
