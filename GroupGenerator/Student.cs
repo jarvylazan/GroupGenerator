@@ -10,8 +10,15 @@
 
     public class Student : Person, IDisplayConfig
     {
+        // In the description of the task:  Create student groups in different sizes !randomly!
+        // Task 7. Research how to use a BindingList with a ListBox. ( we need to make those two work togeter)
+        // Task 8. Organize your instances of the Student class in a BindingList for easier management with a ListBox.
+        //         -That is what you send to the teacher: Display all the imported users - BindingList with a ListBox.
+        // Commenting our code
+        // Finishing the UML (my part)
+
         public const int DisplayModeFullNameWithId = 2;
-        private string id;
+        private string id = string.Empty;
         private int displayMode;
         private char[] delim = { ',', '(' };
 
