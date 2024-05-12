@@ -7,7 +7,7 @@ namespace GroupGenerator
 
     public partial class MainForm : Form
     {
-        private List<string>[] formGroups; // Should we initate it ?
+        private List<string>[] formGroups;
         private BindingList<Student> students = new BindingList<Student>();
         private int displayMode;
 
@@ -47,18 +47,18 @@ namespace GroupGenerator
                     nbrGroups = this.studentListBox.Items.Count / this.UserInputSize();
                     if (nbrGroups >= 1)
                     {
-                        GroupResultsForm groupResultsFrom = new GroupResultsForm(this.NbrOfGroup(nbrGroups, this.students));
+                        GroupResultsForm groupResultsFrom = new GroupResultsForm(this.NbrOfGroup(nbrGroups));
                         groupResultsFrom.ShowDialog();
                     }
                     else
                     {
-                        throw new InvalidDataException($"There fewer students than the numbers of students in a group. You have {this.studentListBox.Items.Count} students.");
+                        throw new InvalidDataException($"There is fewer students than the numbers of students in a group. You have {this.studentListBox.Items.Count} students.");
                     }
                 }
 
                 if (this.numberOfGroupsRadioButton.Checked)
                 {
-                    GroupResultsForm groupResultsForm = new GroupResultsForm(this.NbrOfGroup(this.UserInputSize(), this.students));
+                    GroupResultsForm groupResultsForm = new GroupResultsForm(this.NbrOfGroup(this.UserInputSize()));
                     groupResultsForm.ShowDialog();
                 }
             }
@@ -85,9 +85,11 @@ namespace GroupGenerator
             }
         }
 
-        private List<string>[] NbrOfGroup(int nbrGroups, BindingList<Student> stud)
+        private List<string>[] NbrOfGroup(int nbrGroups)
         {
+            Random random = new Random();
             this.formGroups = new List<string>[nbrGroups];
+            List<string> readyToShuffle = new List<string>();
 
             // Initialize each group list
             for (int i = 0; i < nbrGroups; i++)
@@ -95,12 +97,19 @@ namespace GroupGenerator
                 this.formGroups[i] = new List<string>();
             }
 
+            foreach (string students in this.studentListBox.Items)
+            {
+                readyToShuffle.Add(students);
+            }
+
             int index = 0;
 
-            foreach (string student in this.studentListBox.Items)
+            while (readyToShuffle.Count > 0)
             {
-                this.formGroups[index].Add(student);
+                int picker = random.Next(0, readyToShuffle.Count);
+                this.formGroups[index].Add(readyToShuffle[picker]);
                 index = (index + 1) % nbrGroups;
+                readyToShuffle.RemoveAt(picker);
             }
 
             return this.formGroups;
