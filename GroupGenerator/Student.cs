@@ -10,16 +10,9 @@
 
     public class Student : Person, IDisplayConfig
     {
-        // In the description of the task:  Create student groups in different sizes !randomly!
-        // Task 7. Research how to use a BindingList with a ListBox. ( we need to make those two work togeter)
-        // Task 8. Organize your instances of the Student class in a BindingList for easier management with a ListBox.
-        //         -That is what you send to the teacher: Display all the imported users - BindingList with a ListBox.
-        // Commenting our code
-
         public const int DisplayModeFullNameWithId = 2;
         private string id = string.Empty;
         private int displayMode;
-        private char[] delim = { ',', '(' };
 
         public Student(string name)
             : base(name)
@@ -73,13 +66,15 @@
             {
                 try
                 {
-                    // Catch error when there is no comma or open parenthesis.
-                    string[] splitComma = value.Split(this.delim[0]);
-                    string[] splitParenthesis = splitComma[1].Split(this.delim[1]);
+                    // Code to split the text.
+                    char[] delim = { ',', '(' };
+                    string[] splitComma = value.Split(delim[0]);
+                    string[] splitParenthesis = splitComma[1].Split(delim[1]);
 
                     this.LastName = splitComma[0];
                     this.FirstName = splitParenthesis[0].Trim();
 
+                    // Verify if there a closing parenthesis
                     Regex regex = new Regex(@"\)$");
                     if (regex.IsMatch(splitParenthesis[1]))
                     {
@@ -90,23 +85,25 @@
                         throw new Exception("There is no closing parenthesis at the end");
                     }
                 }
+
+                // Catch errors, then throw the respective message(s) to the class or form that uses this.
                 catch (Exception ex)
                 {
                     if (!value.Contains(',') || !value.Contains('('))
                     {
                         if (!value.Contains(','))
                         {
-                            MessageBox.Show("There is no comma in your text format.");
+                            throw new Exception("There is no comma in your text format.");
                         }
 
                         if (!value.Contains('('))
                         {
-                            MessageBox.Show("The ID number format is invalid. This error is most likely caused if there is no open parenthesis before the ID.");
+                            throw new Exception("The ID number format is invalid. This error is most likely caused if there is no open parenthesis before the ID.");
                         }
                     }
                     else
                     {
-                        MessageBox.Show(ex.Message);
+                        throw new Exception(ex.Message);
                     }
                 }
             }
@@ -130,9 +127,9 @@
             }
         }
 
+        // Matches any string consisting entirely of one or more digits
         public bool Validate(string value)
         {
-            // Matches any string consisting entirely of one or more digits
             Regex regex = new Regex(@"^\d+$");
             return regex.IsMatch(value);
         }

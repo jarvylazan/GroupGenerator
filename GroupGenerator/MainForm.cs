@@ -32,6 +32,7 @@ namespace GroupGenerator
             }
         }
 
+        // Button that loads in the form for importing the students.
         private void ImportStudentsTextBoxButton_Click(object sender, EventArgs e)
         {
             ImportForm importForm = new ImportForm(this, this.displayMode);
@@ -47,6 +48,8 @@ namespace GroupGenerator
                 {
                     nbrGroups = this.studentListBox.Items.Count / this.UserInputSize();
 
+                    // Add an extra group if the number of students is not divisible by 
+                    // the number of members in a group the user desires.
                     if (this.studentListBox.Items.Count % this.UserInputSize() != 0)
                     {
                         nbrGroups++;
@@ -110,6 +113,7 @@ namespace GroupGenerator
 
             if (this.membersInAGroupRadioButton.Checked)
             {
+                // The currentGroupSize variable ensures that there is a proper amount of students in a group.
                 int index = 0;
                 int currentGroupSize = 0;
 

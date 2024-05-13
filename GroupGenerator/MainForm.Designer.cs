@@ -193,27 +193,30 @@
             // groupSizeLabel
             // 
             groupSizeLabel.AutoSize = true;
-            groupSizeLabel.Location = new Point(563, 746);
+            groupSizeLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            groupSizeLabel.Location = new Point(546, 744);
             groupSizeLabel.Margin = new Padding(4, 0, 4, 0);
             groupSizeLabel.Name = "groupSizeLabel";
-            groupSizeLabel.Size = new Size(62, 32);
+            groupSizeLabel.Size = new Size(83, 45);
             groupSizeLabel.TabIndex = 8;
             groupSizeLabel.Text = "Size:";
             // 
             // groupSizeTextBox
             // 
-            groupSizeTextBox.Location = new Point(674, 739);
+            groupSizeTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            groupSizeTextBox.Location = new Point(684, 739);
             groupSizeTextBox.Margin = new Padding(4, 2, 4, 2);
             groupSizeTextBox.Name = "groupSizeTextBox";
-            groupSizeTextBox.Size = new Size(88, 39);
+            groupSizeTextBox.Size = new Size(88, 50);
             groupSizeTextBox.TabIndex = 9;
             // 
             // createGroupsButton
             // 
-            createGroupsButton.Location = new Point(481, 873);
+            createGroupsButton.Font = new Font("Segoe UI", 13.875F, FontStyle.Bold, GraphicsUnit.Point);
+            createGroupsButton.Location = new Point(481, 845);
             createGroupsButton.Margin = new Padding(4, 2, 4, 2);
             createGroupsButton.Name = "createGroupsButton";
-            createGroupsButton.Size = new Size(399, 90);
+            createGroupsButton.Size = new Size(399, 126);
             createGroupsButton.TabIndex = 10;
             createGroupsButton.Text = "Create Group";
             createGroupsButton.UseVisualStyleBackColor = true;
