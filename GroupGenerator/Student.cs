@@ -10,10 +10,12 @@
 
     public class Student : Person, IDisplayConfig
     {
+        // Fields
         public const int DisplayModeFullNameWithId = 2;
         private string id = string.Empty;
         private int displayMode;
 
+        // Constructors
         public Student(string name)
             : base(name)
         {
@@ -25,6 +27,7 @@
             this.Id = id;
         }
 
+        // Id property. It will be validate by the method Validate().
         public string Id
         {
             get
@@ -45,10 +48,13 @@
             }
         }
 
+        // Name property. Get have a switch case to display the user choose. Set will split the information
+        // in their respective fields and validate each one.
         public override string Name
         {
             get
             {
+                // Switch case to return which diplay it will be used. It is using the DisplayMode proprety.
                 switch (this.DisplayMode)
                 {
                     case Person.DisplayModeFirstLastName:
@@ -109,6 +115,7 @@
             }
         }
 
+        // DisplayMode Prorety. Validate the choice and if it is inbound
         public new int DisplayMode
         {
             get

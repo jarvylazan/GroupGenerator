@@ -8,21 +8,38 @@ namespace GroupGenerator
 
     public partial class MainForm : Form
     {
+        // Fields
         private List<string>[] formGroups;
         private BindingList<Student> students = new BindingList<Student>();
         private int displayMode;
 
+        // Constructor
         public MainForm()
         {
             this.InitializeComponent();
         }
 
+        // Students proprety and throw and exception if the value if null.
         public BindingList<Student> Students
         {
-            get { return this.students; }
-            set { this.students = value; }
+            get
+            {
+                return this.students;
+            }
+
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException(nameof(value), "Students list cannot be null.");
+                }
+
+                this.students = value;
+            }
         }
 
+        // AddFormatDisplay() Method. It takes to parameters one is a BindingList of Student
+        // and the other one is an in which it the display mode.
         public void AddFormatDisplay(BindingList<Student> students, int displaymode)
         {
             foreach (Student student in students)
@@ -39,16 +56,18 @@ namespace GroupGenerator
             importForm.ShowDialog();
         }
 
+        // Button that is creating the groups in the groupResultsForm
         private void CreateGroupsButton_Click(object sender, EventArgs e)
         {
             int nbrGroups;
             try
             {
+                // If the RadioButton of creating groups with members is check it will use this part of the code to display in the GroupResultsForm.
                 if (this.membersInAGroupRadioButton.Checked)
                 {
                     nbrGroups = this.studentListBox.Items.Count / this.UserInputSize();
 
-                    // Add an extra group if the number of students is not divisible by 
+                    // Add an extra group if the number of students is not divisible by
                     // the number of members in a group the user desires.
                     if (this.studentListBox.Items.Count % this.UserInputSize() != 0)
                     {
@@ -65,6 +84,8 @@ namespace GroupGenerator
                         throw new InvalidDataException($"There are fewer students than the numbers of students in a group. You have {this.studentListBox.Items.Count} students.");
                     }
                 }
+
+                // If the Number of group RadioButton is selected. It will use this part of the code to display in the GroupResultsForm.
                 else if (this.numberOfGroupsRadioButton.Checked)
                 {
                     GroupResultsForm groupResultsForm = new GroupResultsForm(this.NbrOfGroup(this.UserInputSize()));
@@ -81,6 +102,7 @@ namespace GroupGenerator
             }
         }
 
+        // This is a method take the user input from the TextBox and validate it and send it back as a int.
         private int UserInputSize()
         {
             int sizeGroups;
@@ -94,6 +116,7 @@ namespace GroupGenerator
             }
         }
 
+        // This method gets the user input and creates an array of Students lists.
         private List<string>[] NbrOfGroup(int nbrGroups)
         {
             Random random = new Random();
@@ -106,11 +129,13 @@ namespace GroupGenerator
                 this.formGroups[i] = new List<string>();
             }
 
+            // Creating a list that we be use to get the shuffling
             foreach (string students in this.studentListBox.Items)
             {
                 readyToShuffle.Add(students);
             }
 
+            // If the Member in a group is selected it will create the array list accordingly.
             if (this.membersInAGroupRadioButton.Checked)
             {
                 // The currentGroupSize variable ensures that there is a proper amount of students in a group.
@@ -131,6 +156,8 @@ namespace GroupGenerator
                     currentGroupSize++;
                 }
             }
+
+            // IF the Number of group RadioButton is selected it will create the array of list accordingly.
             else if (this.numberOfGroupsRadioButton.Checked)
             {
                 int index = 0;
@@ -146,6 +173,7 @@ namespace GroupGenerator
             return this.formGroups;
         }
 
+        // It will clear all the student from the ListBox and also the student BidningList. Also set Focus to the Import Button.
         private void ClearStudentsButton_Click(object sender, EventArgs e)
         {
             this.studentListBox.Items.Clear();
@@ -153,6 +181,7 @@ namespace GroupGenerator
             this.students.Clear();
         }
 
+        // It will delete a student from the ListBox and also from the index of the BindingList.
         private void DeleteStudentButton_Click(object sender, EventArgs e)
         {
             try
@@ -173,6 +202,7 @@ namespace GroupGenerator
             }
         }
 
+        // Display the Full Name without the ID in the StudentsListBox.
         private void HideLastNameRadioButton_Clicked(object sender, EventArgs e)
         {
             this.studentListBox.Items.Clear();
@@ -180,6 +210,7 @@ namespace GroupGenerator
             this.AddFormatDisplay(this.students, this.displayMode);
         }
 
+        // Display the FirstName and LastName first letter in this order without the Id in the StudentsListBox.
         private void FullNameRadioButton_Clicked(object sender, EventArgs e)
         {
             this.studentListBox.Items.Clear();
@@ -187,6 +218,7 @@ namespace GroupGenerator
             this.AddFormatDisplay(this.students, this.displayMode);
         }
 
+        // Display the Last Name, FirstName and the Id in this order in the StudentsListBox.
         private void NameWithStudentIdRadioButton_Clicked(object sender, EventArgs e)
         {
             this.studentListBox.Items.Clear();

@@ -12,14 +12,17 @@ namespace GroupGenerator
 {
     public partial class GroupResultsForm : Form
     {
+        // Field
         private List<string>[] groups;
 
+        // Constructor
         public GroupResultsForm(List<string>[] group)
         {
             this.InitializeComponent();
             this.groups = group;
         }
 
+        // Will diplay the Name randomly in the size the user selected.
         private void GroupResultsForm_Load(object sender, EventArgs e)
         {
             for (int i = 0; i < this.groups.Length; i++)
@@ -37,6 +40,7 @@ namespace GroupGenerator
             }
         }
 
+        // It will close the form
         private void CloseButton_Click(object sender, EventArgs e)
         {
             this.Close();
