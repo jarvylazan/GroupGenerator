@@ -27,17 +27,27 @@
         private void ImportAndCloseButton_CLick(object sender, EventArgs e)
         {
             string[] names = this.importTextBox.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-
             this.mainForm.studentListBox.Items.Clear();
 
-            foreach (string name in names)
+            try
             {
-                Student tmpStudent = new Student(name);
-                this.students.Add(tmpStudent);
+                foreach (string name in names)
+                {
+                    Student tmpStudent = new Student(name);
+                    if (tmpStudent.Validate(tmpStudent.Id))
+                    {
+                        this.students.Add(tmpStudent);
+                    }
+                }
+
+                this.mainForm.AddFormatDisplay(this.students, this.displayMode);
+                this.mainForm.Students = this.students;
+            }
+            catch (Exception)
+            {
+                this.mainForm.studentListBox.Items.Clear();
             }
 
-            this.mainForm.AddFormatDisplay(this.students, this.displayMode);
-            this.mainForm.Students = this.students;
             this.Close();
         }
 

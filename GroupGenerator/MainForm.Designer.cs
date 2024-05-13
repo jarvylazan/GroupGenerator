@@ -138,7 +138,7 @@
             deleteStudentButton.Name = "deleteStudentButton";
             deleteStudentButton.Size = new Size(195, 76);
             deleteStudentButton.TabIndex = 5;
-            deleteStudentButton.Text = "Delete a Student";
+            deleteStudentButton.Text = "Delete Student";
             deleteStudentButton.UseVisualStyleBackColor = true;
             deleteStudentButton.Click += DeleteStudentButton_Click;
             // 
@@ -149,7 +149,7 @@
             clearStudentsButton.Name = "clearStudentsButton";
             clearStudentsButton.Size = new Size(195, 76);
             clearStudentsButton.TabIndex = 6;
-            clearStudentsButton.Text = "Clear All";
+            clearStudentsButton.Text = "Clear List";
             clearStudentsButton.UseVisualStyleBackColor = true;
             clearStudentsButton.Click += ClearStudentsButton_Click;
             // 

@@ -7,7 +7,7 @@ namespace GroupGenerator
 
     public partial class MainForm : Form
     {
-        private List<string>[] formGroups; // Should we initate it ?
+        private List<string>[] formGroups; // Should we initiate it ?
         private BindingList<Student> students = new BindingList<Student>();
         private int displayMode;
 
@@ -45,6 +45,12 @@ namespace GroupGenerator
                 if (this.membersInAGroupRadioButton.Checked)
                 {
                     nbrGroups = this.studentListBox.Items.Count / this.UserInputSize();
+
+                    if (this.studentListBox.Items.Count % this.UserInputSize() != 0)
+                    {
+                        nbrGroups++;
+                    }
+
                     if (nbrGroups >= 1)
                     {
                         GroupResultsForm groupResultsFrom = new GroupResultsForm(this.NbrOfGroup(nbrGroups, this.students));
@@ -52,11 +58,10 @@ namespace GroupGenerator
                     }
                     else
                     {
-                        throw new InvalidDataException($"There fewer students than the numbers of students in a group. You have {this.studentListBox.Items.Count} students.");
+                        throw new InvalidDataException($"There are fewer students than the numbers of students in a group. You have {this.studentListBox.Items.Count} students.");
                     }
                 }
-
-                if (this.numberOfGroupsRadioButton.Checked)
+                else if (this.numberOfGroupsRadioButton.Checked)
                 {
                     GroupResultsForm groupResultsForm = new GroupResultsForm(this.NbrOfGroup(this.UserInputSize(), this.students));
                     groupResultsForm.ShowDialog();
@@ -95,12 +100,31 @@ namespace GroupGenerator
                 this.formGroups[i] = new List<string>();
             }
 
-            int index = 0;
-
-            foreach (string student in this.studentListBox.Items)
+            if (this.membersInAGroupRadioButton.Checked)
             {
-                this.formGroups[index].Add(student);
-                index = (index + 1) % nbrGroups;
+                int index = 0;
+                int currentGroupSize = 0;
+
+                foreach (string student in this.studentListBox.Items)
+                {
+                    if (currentGroupSize >= this.UserInputSize())
+                    {
+                        index = (index + 1) % nbrGroups;
+                        currentGroupSize = 0;
+                    }
+
+                    this.formGroups[index].Add(student);
+                    currentGroupSize++;
+                }
+            }
+            else if (this.numberOfGroupsRadioButton.Checked)
+            {
+                int index = 0;
+                foreach (string student in this.studentListBox.Items)
+                {
+                    this.formGroups[index].Add(student);
+                    index = (index + 1) % nbrGroups;
+                }
             }
 
             return this.formGroups;
