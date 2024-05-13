@@ -79,7 +79,16 @@
 
                     this.LastName = splitComma[0];
                     this.FirstName = splitParenthesis[0].Trim();
-                    this.Id = splitParenthesis[1].TrimEnd(')');
+
+                    Regex regex = new Regex(@"\)$");
+                    if (regex.IsMatch(splitParenthesis[1]))
+                    {
+                        this.Id = splitParenthesis[1].TrimEnd(')');
+                    }
+                    else
+                    {
+                        throw new Exception("There is no closing parenthesis at the end");
+                    }
                 }
                 catch (Exception ex)
                 {

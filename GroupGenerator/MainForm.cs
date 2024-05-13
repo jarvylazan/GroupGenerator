@@ -3,6 +3,7 @@ namespace GroupGenerator
     using System;
     using System.ComponentModel;
     using System.Diagnostics;
+    using System.Reflection;
     using System.Reflection.Metadata;
 
     public partial class MainForm : Form
@@ -45,6 +46,12 @@ namespace GroupGenerator
                 if (this.membersInAGroupRadioButton.Checked)
                 {
                     nbrGroups = this.studentListBox.Items.Count / this.UserInputSize();
+
+                    if (this.studentListBox.Items.Count % this.UserInputSize() != 0)
+                    {
+                        nbrGroups++;
+                    }
+
                     if (nbrGroups >= 1)
                     {
                         GroupResultsForm groupResultsFrom = new GroupResultsForm(this.NbrOfGroup(nbrGroups));
@@ -52,11 +59,10 @@ namespace GroupGenerator
                     }
                     else
                     {
-                        throw new InvalidDataException($"There is fewer students than the numbers of students in a group. You have {this.studentListBox.Items.Count} students.");
+                        throw new InvalidDataException($"There are fewer students than the numbers of students in a group. You have {this.studentListBox.Items.Count} students.");
                     }
                 }
-
-                if (this.numberOfGroupsRadioButton.Checked)
+                else if (this.numberOfGroupsRadioButton.Checked)
                 {
                     GroupResultsForm groupResultsForm = new GroupResultsForm(this.NbrOfGroup(this.UserInputSize()));
                     groupResultsForm.ShowDialog();
@@ -102,14 +108,35 @@ namespace GroupGenerator
                 readyToShuffle.Add(students);
             }
 
-            int index = 0;
-
-            while (readyToShuffle.Count > 0)
+            if (this.membersInAGroupRadioButton.Checked)
             {
-                int picker = random.Next(0, readyToShuffle.Count);
-                this.formGroups[index].Add(readyToShuffle[picker]);
-                index = (index + 1) % nbrGroups;
-                readyToShuffle.RemoveAt(picker);
+                int index = 0;
+                int currentGroupSize = 0;
+
+                while (readyToShuffle.Count > 0)
+                {
+                    int picker = random.Next(0, readyToShuffle.Count);
+                    if (currentGroupSize >= this.UserInputSize())
+                    {
+                        index = (index + 1) % nbrGroups;
+                        currentGroupSize = 0;
+                    }
+
+                    this.formGroups[index].Add(readyToShuffle[picker]);
+                    readyToShuffle.RemoveAt(picker);
+                    currentGroupSize++;
+                }
+            }
+            else if (this.numberOfGroupsRadioButton.Checked)
+            {
+                int index = 0;
+                while (readyToShuffle.Count > 0)
+                {
+                    int picker = random.Next(0, readyToShuffle.Count);
+                    this.formGroups[index].Add(readyToShuffle[picker]);
+                    index = (index + 1) % nbrGroups;
+                    readyToShuffle.RemoveAt(picker);
+                }
             }
 
             return this.formGroups;
